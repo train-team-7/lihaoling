@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .biaodan{
+            width: 500px;
+            height: 34px;
+            margin: 100px auto;
+            font-size: 18px;
+        }
+        #text{
+            width: 300px;
+            height: 30px;
+            margin-right: 20px;
+            border: 1px solid #ccc;
+        }
+        #submit{
+            width: 60px;
+            height: 32px;
+            text-align: center;
+            line-height: 30px;
+            background-color: blue;
+            color: white;
+            border-radius: 10px;
+        }
+#show{
+    width: 300px;
+    height: 20px;
+    margin-left: 45px;
+    color: #ccc;
+    font-weight: 700;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            var show=document.getElementById("show");
+            var text=document.getElementById("text");
+            var submit=document.getElementById("submit");
+            submit.onclick= function () {
+                    if(text.value==""){
+                        show.innerHTML="姓名不能为空";
+                        show.style.color="red";
+                        text.style.borderColor="red";
+                    }
+              else if(countLength(text.value)>=4&&countLength(text.value)<=16){
+                    text.style.borderColor="green";
+                        show.innerHTML="输入格式正确";
+                        show.style.color="green";
+                    }
+            }
+
+        function countLength(str) {
+            var inputLength = 0;
+            for (var i = 0; i < str.length; i++) {
+                var countCode = str.charCodeAt(i);
+                if (countCode >= 0 && countCode <= 128) {
+                    inputLength += 1;
+                } else {
+                    inputLength += 2;
+                }
+            }
+            return inputLength;
+        }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="biaodan">
+      名称  <input type="text" id="text" ><input type="submit" value="验证" id="submit">
+        <div id="show">必填，长度为4-16个字符</div>
+    </div>
+</body>
+</html>
